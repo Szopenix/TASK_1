@@ -2,6 +2,5 @@ package hello;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, Integer> {
-
+public interface CharacterRepository extends JpaRepository<Character, Integer> {
 }
