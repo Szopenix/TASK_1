@@ -1,9 +1,8 @@
-package hello;
+package com.mycompany.domain;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
 public class User {
 
     @Id
@@ -13,7 +12,7 @@ public class User {
     private String email;
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private Set<Character> characters;
+//    private Set<Figure> characters;
 
     public User() {
     }
@@ -47,11 +46,11 @@ public class User {
         this.email = email;
     }
 
-//    public Set<Character> getCharacters() {
+//    public Set<Figure> getCharacters() {
 //        return characters;
 //    }
 //
-//    public void setCharacters(Set<Character> characters) {
+//    public void setCharacters(Set<Figure> characters) {
 //        this.characters = characters;
 //    }
 

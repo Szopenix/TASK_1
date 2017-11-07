@@ -1,10 +1,9 @@
-package hello;
+package com.mycompany.domain;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "characterr")
-public class Character {
+public class Figure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,18 +12,17 @@ public class Character {
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
     private User user;
 
-    public Character() {
+    public Figure() {
     }
 
-    public Character(Double power, String name) {
+    public Figure(Double power, String name) {
         this.power = power;
         this.name = name;
     }
 
-    public Character(Double power, String name, User user) {
+    public Figure(Double power, String name, User user) {
         this.power = power;
         this.name = name;
         this.user = user;
