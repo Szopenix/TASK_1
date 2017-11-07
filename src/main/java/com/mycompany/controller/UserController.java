@@ -20,26 +20,32 @@ public class UserController {
     public @ResponseBody
     String addNewUser(@RequestParam String name,
                       @RequestParam String email) {
-        User n = new User();
-        n.setName(name);
-        n.setEmail(email);
-        userRepository.save(n);
+        User user = new User();
+        user.setName(name);
+        user.setEmail(email);
+        userRepository.save(user);
 
         return "SavedUser";
     }
 
-    @GetMapping(path = "/editUser")
+    @GetMapping(path = "/updateUser")
     public @ResponseBody
-    String editUser(@RequestParam Integer id,
-                    @RequestParam String name,
-                    @RequestParam String email) {
-        User n = new User();
-        n.setId(id);
-        n.setName(name);
-        n.setEmail(email);
-        userRepository.save(n);
+    String updateUser(@RequestParam Integer id,
+                      @RequestParam String name,
+                      @RequestParam String email) {
+        User user = userRepository.findOne(id);
+        user.setName(name);
+        user.setEmail(email);
+        userRepository.save(user);
 
         return "EditedUser";
+    }
+
+    @GetMapping(path = "/getUserById")
+    public @ResponseBody
+    User getUserById(@RequestParam Integer id) {
+
+        return userRepository.findOne(id);
     }
 
     @GetMapping(path = "/allUsers")
@@ -52,6 +58,7 @@ public class UserController {
     public @ResponseBody
     String deleteUser(@RequestParam Integer id) {
         userRepository.delete(id);
+
         return "DeletedUser";
     }
 
@@ -59,6 +66,7 @@ public class UserController {
     public @ResponseBody
     String deleteAllUsers() {
         userRepository.deleteAll();
+
         return "DeletedUsers";
     }
 

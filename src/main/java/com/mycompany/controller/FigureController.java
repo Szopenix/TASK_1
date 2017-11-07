@@ -20,13 +20,14 @@ public class FigureController {
     @GetMapping(path = "/addFigure")
     public @ResponseBody
     String addNewFigure(@RequestParam Double power,
-                           @RequestParam String name,
-                           @RequestParam User user) {
-        Figure ch = new Figure();
-        ch.setPower(power);
-        ch.setName(name);
-        ch.setUser(user);
-        figureRepository.save(ch);
+                        @RequestParam String name,
+                        @RequestParam User user) {
+        Figure figure = new Figure();
+        figure.setPower(power);
+        figure.setName(name);
+        figure.setUser(user);
+        figureRepository.save(figure);
+
         return "SavedFigure";
     }
 
@@ -36,13 +37,20 @@ public class FigureController {
                          @RequestParam Double power,
                          @RequestParam String name,
                          @RequestParam User user) {
-        Figure ch = new Figure();
-        ch.setId(id);
-        ch.setPower(power);
-        ch.setName(name);
-        ch.setUser(user);
-        figureRepository.save(ch);
+        Figure figure = figureRepository.findOne(id);
+        figure.setPower(power);
+        figure.setName(name);
+        figure.setUser(user);
+        figureRepository.save(figure);
+
         return "EditedFigure";
+    }
+
+    @GetMapping(path = "/getFigureById")
+    public @ResponseBody
+    Figure getFigureById(@RequestParam Integer id) {
+
+        return figureRepository.findOne(id);
     }
 
     @GetMapping(path = "/allFigures")
@@ -55,6 +63,7 @@ public class FigureController {
     public @ResponseBody
     String deleteFigure(@RequestParam Integer id) {
         figureRepository.delete(id);
+
         return "DeletedFigure";
     }
 
@@ -62,6 +71,7 @@ public class FigureController {
     public @ResponseBody
     String deleteAllFigures() {
         figureRepository.deleteAll();
+
         return "DeletedFigures";
     }
 
