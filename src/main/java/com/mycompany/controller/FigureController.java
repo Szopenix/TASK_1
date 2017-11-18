@@ -23,7 +23,7 @@ public class FigureController {
                         @RequestParam String name,
                         @RequestParam User user) {
         Figure figure = new Figure();
-        figure.setPower(power);
+        figure.setAttackPower(power);
         figure.setName(name);
         figure.setUser(user);
         figureRepository.save(figure);
@@ -38,7 +38,7 @@ public class FigureController {
                          @RequestParam String name,
                          @RequestParam User user) {
         Figure figure = figureRepository.findOne(id);
-        figure.setPower(power);
+        figure.setAttackPower(power);
         figure.setName(name);
         figure.setUser(user);
         figureRepository.save(figure);

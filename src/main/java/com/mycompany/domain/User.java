@@ -9,6 +9,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String name;
+    private String password;
     private String email;
 
 //    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -17,8 +18,9 @@ public class User {
     public User() {
     }
 
-    public User(String name, String email) {
+    public User(String name, String password, String email) {
         this.name = name;
+        this.password = password;
         this.email = email;
     }
 
@@ -36,6 +38,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getEmail() {

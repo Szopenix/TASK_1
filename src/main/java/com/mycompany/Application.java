@@ -45,15 +45,15 @@ public class Application implements CommandLineRunner{
 
     @Transactional
     private void saveData() {
-        User user1 = new User("Adrian", "adrian@gmail.com");
-        User user2 = new User("Adam", "adam@gmail.com");
+        User user1 = new User("Adrian", "adrian", "adrian@gmail.com");
+        User user2 = new User("Adam", "adam", "adam@gmail.com");
         userRepository.save(user1);
         userRepository.save(user2);
 
-        Figure warrior = new Figure(100d, "warrior", user1);
-        Figure mage = new Figure(50d, "mage", user1);
-        Figure warlock = new Figure(40d, "warlock", user2);
-        Figure rogue = new Figure(80d, "rogue", user2);
+        Figure warrior = new Figure(100d, 0d, "warrior", user1);
+        Figure mage = new Figure(20d, 100d, "mage", user1);
+        Figure warlock = new Figure(10d, 120d, "warlock", user2);
+        Figure rogue = new Figure(80d, 20d, "rogue", user2);
         figureRepository.save(warrior);
         figureRepository.save(mage);
         figureRepository.save(warlock);

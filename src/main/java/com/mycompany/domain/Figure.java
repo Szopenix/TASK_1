@@ -8,7 +8,8 @@ public class Figure {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    private Double power;
+    private Double attackPower;
+    private Double abilityPower;
     private String name;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -17,13 +18,15 @@ public class Figure {
     public Figure() {
     }
 
-    public Figure(Double power, String name) {
-        this.power = power;
+    public Figure(Double attackPower, Double abilityPower, String name) {
+        this.attackPower = attackPower;
+        this.abilityPower = abilityPower;
         this.name = name;
     }
 
-    public Figure(Double power, String name, User user) {
-        this.power = power;
+    public Figure(Double attackPower, Double abilityPower, String name, User user) {
+        this.attackPower = attackPower;
+        this.abilityPower = abilityPower;
         this.name = name;
         this.user = user;
     }
@@ -36,12 +39,20 @@ public class Figure {
         this.id = id;
     }
 
-    public Double getPower() {
-        return power;
+    public Double getAttackPower() {
+        return attackPower;
     }
 
-    public void setPower(Double power) {
-        this.power = power;
+    public void setAttackPower(Double attackPower) {
+        this.attackPower = attackPower;
+    }
+
+    public Double getAbilityPower() {
+        return abilityPower;
+    }
+
+    public void setAbilityPower(Double abilityPower) {
+        this.abilityPower = abilityPower;
     }
 
     public String getName() {
