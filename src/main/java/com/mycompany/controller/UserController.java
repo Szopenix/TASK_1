@@ -1,14 +1,17 @@
 package com.mycompany.controller;
 
 import com.mycompany.domain.User;
+import com.mycompany.dto.UserDTO;
 import com.mycompany.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -56,9 +59,14 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/allUsers")
     @ResponseBody
-    public List<User> getAllUsers() {
-
-        return userRepository.findAll();
+    public String getAllUsers(ModelMap model) {
+        List<User> users = userRepository.findAll();
+        List<UserDTO> usersDTO = new ArrayList<>();
+        for (User user : users) {
+            usersDTO.add(convertToDto(user));
+        }
+        model.addAttribute("allUsers", usersDTO);
+        return "allUsers";
     }
 
     @RequestMapping(method = RequestMethod.DELETE, path = "/deleteUser")
@@ -75,6 +83,24 @@ public class UserController {
         userRepository.deleteAll();
 
         return "DeletedUsers";
+    }
+
+    private UserDTO convertToDto(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setName(user.getName());
+        userDTO.setEmail(user.getEmail());
+
+        return userDTO;
+    }
+
+    private User convertToEntity(UserDTO userDTO) {
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setName(userDTO.getName());
+        user.setEmail(userDTO.getEmail());
+
+        return user;
     }
 
 }

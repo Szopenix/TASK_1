@@ -1,7 +1,6 @@
 package com.mycompany.controller;
 
 import com.mycompany.domain.Figure;
-import com.mycompany.domain.User;
 import com.mycompany.dto.FigureDTO;
 import com.mycompany.repository.FigureRepository;
 import org.springframework.beans.factory.annotation.Autowired;
