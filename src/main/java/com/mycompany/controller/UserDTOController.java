@@ -62,7 +62,6 @@ public class UserDTOController {
         for (User user : users) {
             usersDTO.add(convertToDto(user));
         }
-
         return usersDTO;
     }
 
